@@ -26,15 +26,15 @@ if (!isset($_SESSION['email'])) {
     <div class="container">
         <div class="row">
             <div class="mb-3">
-                <h2 class="fs-2">Cadastro de Usuários</h2>
+                <h2 class="fs-2">Cadastro de Produtos</h2>
                 <hr>
                 <form action="insert.php" method="post">
                     <label class="form-label">Nome</label>
                     <input class="form-control" type="text" name="name">
-                    <label class="form-label">E-mail</label>
+                    <!-- <label class="form-label">E-mail</label>
                     <input class="form-control" type="text" name="email">
-                    <label class="form-label">Senha</label>
-                    <input class="form-control" type="text" name="pass">
+                    <label class="form-label">Senha</label> -->
+                    <!-- <input class="form-control" type="text" name="pass"> -->
                     <div class="col-auto">
                         <button type="submit" class="btn btn-primary m-3">Cadastrar</button>
                     </div>
@@ -46,15 +46,15 @@ if (!isset($_SESSION['email'])) {
                     <tr>
                         <th scope="col">Id</th>
                         <th scope="col">Nome</th>
-                        <th scope="col">E-mail</th>
+                        <!-- <th scope="col">E-mail</th>
                         <th scope="col">Pass</th>
-                        <th scope="col">Excluir</th>
+                        <th scope="col">Excluir</th> -->
                     </tr>
                 </thead>
                 <tbody>
                     <?php
                     try {
-                        $Model = new Model($pdo, 'user');
+                        $Model = new Model($pdo, 'product');
                         $data = $Model->selectAll();
                         foreach ($data as $registers):
                             extract($registers);
@@ -62,9 +62,7 @@ if (!isset($_SESSION['email'])) {
                             <tr>
                                 <th scope="row"><?= $id ?></th>
                                 <td><?= $name ?></td>
-                                <td><?= $email ?></td>
-                                <td><?= $pass ?></td>
-                                <td> <a href="<?= $base; ?>/admin/user/delete.php?id=<?= $id; ?>"> <i class="bi bi-trash" style="color: red;"></i> </a> </td>
+                                <td> <a href="<?= $base; ?>/admin/product/delete.php?id=<?= $id; ?>"> <i class="bi bi-trash" style="color: red;"></i> </a> </td>
                             </tr>
                     <?php
                         endforeach;

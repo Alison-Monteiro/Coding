@@ -16,11 +16,11 @@ endif;
 $email = filter_input(INPUT_POST, 'email', FILTER_DEFAULT);
 $pass = filter_input(INPUT_POST, 'password', FILTER_DEFAULT);
 
-if (checkComplexPass($pass)) :
+// if (checkComplexPass($pass)) :
     try {
         $sth = $pdo->prepare('select *from user where email = :email and pass = :pass ');
         $sth->bindValue("email", $email);
-        $sth->bindValue("pass", MD5($pass));
+        $sth->bindValue("pass", ($pass));
         $sth->execute();
         if ($sth->rowCount() > 0) :
             // echo "Usuário Encontrado na Base de Dados";
@@ -36,9 +36,9 @@ if (checkComplexPass($pass)) :
         echo $e->getMessage();
     }
 
-else :
-    echo "Sua senha não atende os Requisitos de Complexidade";
-endif;
+// else :
+//     echo "Sua senha não atende os Requisitos de Complexidade";
+// endif;
 
 // if(checkComplexPass($pass)) {
 //     echo " <p> A senha é obedece os Requisitos </p>";
